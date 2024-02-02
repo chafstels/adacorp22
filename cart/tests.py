@@ -94,5 +94,5 @@ class CartUpdateViewTest(TestCase):
         response = cart_update(request)
         data = json.loads(response.content)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['total'], '50.00')
-        self.assertEqual(data['qty'], 5)
+        self.assertEqual(data["total"], "50.00")
+        self.assertEqual(data["qty"], 5)
