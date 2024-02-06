@@ -5,6 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from transliterate import translit
 
 
 class Category(models.Model):
@@ -84,6 +85,19 @@ class Product(models.Model):
     @property
     def full_image_url(self):
         return self.image.url if self.image else ""
+
+    @staticmethod
+    def _rand_slug():
+        return "".join(
+            random.choice(string.ascii_lowercase + string.digits) for _ in range(3)
+        )
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(
+                translit(self.title, "ru", reversed=True) + self._rand_slug()
+            )
+        super(Product, self).save(*args, **kwargs)
 
 
 class ProductManager(models.Manager):
