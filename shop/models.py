@@ -99,6 +99,10 @@ class Product(models.Model):
             )
         super(Product, self).save(*args, **kwargs)
 
+    @staticmethod
+    def generate_slug(name):
+        return slugify(name)
+
 
 class ProductManager(models.Manager):
     def get_queryset(self):

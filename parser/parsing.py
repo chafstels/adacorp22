@@ -1,5 +1,5 @@
 import requests
-from models import Items, Feedback
+from parser.models import Items, Feedback
 import csv
 import re
 
@@ -33,7 +33,7 @@ class ParseWB:
             _page += 1
             response.raise_for_status()
             items_info = Items.model_validate(response.json()["data"])
-            print(items_info)
+            # print(items_info)
             if not items_info.products:
                 break
             # self.__feedback(items_info)
@@ -41,6 +41,7 @@ class ParseWB:
             # self.__save_to_db(items_info)
             self.__get_images(items_info)
             return items_info
+
     @staticmethod
     def __create_csv():
         with open("data_wb.csv", mode="w", newline="") as file:

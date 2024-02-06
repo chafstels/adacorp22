@@ -14,11 +14,13 @@ class Item(BaseModel):
     root: int
     feedback_count: int = None
     valuation: str = None
+    image_links: str = None
 
-    @field_validator('salePriceU')
+    @field_validator("salePriceU")
     def convert_sale_price(cls, sale_price: int):
         if sale_price is not None:
             return sale_price / 100
+
 
 class Items(BaseModel):
     products: list[Item]
@@ -27,5 +29,3 @@ class Items(BaseModel):
 class Feedback(BaseModel):
     feedbackCountWithText: int
     valuation: str
-
-
