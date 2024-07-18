@@ -13,7 +13,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Starting the Wildberries parse"))
         try:
             parser = ParseWB(
-                "https://www.wildberries.ru/catalog/197488134/detail.aspx"
+                "https://www.wildberries.ru/catalog/218870519/detail.aspx"
             ).parse()
 
             for product_info in parser.products:

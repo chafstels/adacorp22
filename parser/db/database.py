@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
-from .models import Product
+from parser.db.models import Product
 
-DATABASE_URL = 'postgresql://anton:1@localhost/data_wb'
+DATABASE_URL = "postgresql://anton:1@localhost/data_wb"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
